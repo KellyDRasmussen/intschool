@@ -7575,21 +7575,8 @@ I chose 2013 to start the data range because there was a huge school reform in t
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s2">"School"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">"280462 The International School of Billund"</span><span class="p">,</span> <span class="s2">"281541 Lolland Internationale Skole"</span><span class="p">])]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"Percentage Danish origin"</span><span class="p">])</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Data Cleaning</span>
+
+<span class="c1"># More Data Cleaning</span>
 <span class="c1"># Change . to 0</span>
 <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"."</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># Convert number strings to floats</span>
@@ -7640,7 +7627,7 @@ I chose 2013 to start the data range because there was a huge school reform in t
 <span class="c1"># Define grade levels and subplot positions</span>
 <span class="n">grades</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"Indskoling"</span><span class="p">,</span> <span class="s2">"Mellemtrin"</span><span class="p">,</span> <span class="s2">"Udskoling"</span><span class="p">]</span>
 <span class="n">positions</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#C39BD3"</span><span class="p">,</span> <span class="s2">"#9B59B6"</span><span class="p">,</span> <span class="s2">"#5e3370"</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#C39BD3"</span><span class="p">,</span> <span class="s2">"#9B59B6"</span><span class="p">,</span> <span class="s2">"#5e3370"</span><span class="p">]</span> <span class="c1"># I am experimenting with some purples, hope you like them</span>
 
 <span class="c1"># Add a box plot for each grade level in its respective subplot</span>
 <span class="k">for</span> <span class="n">grade</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
@@ -7651,7 +7638,7 @@ I chose 2013 to start the data range because there was a huge school reform in t
             <span class="n">y</span><span class="o">=</span><span class="n">grade_data</span><span class="p">[</span><span class="s2">"Percentage"</span><span class="p">],</span> 
             <span class="n">name</span><span class="o">=</span><span class="n">grade</span><span class="p">,</span> 
             <span class="n">boxmean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">marker_color</span><span class="o">=</span><span class="n">color</span>  <span class="c1"># Apply the specific color for each grade level</span>
+            <span class="n">marker_color</span><span class="o">=</span><span class="n">color</span>  
         <span class="p">),</span>
         <span class="n">row</span><span class="o">=</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">col</span><span class="o">=</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="p">)</span>
@@ -7748,7 +7735,7 @@ The overall trend shows a decrease in variation, indicating a more consistent pr
 This stability suggests that, while there's some fluctuation, the range is narrowing, and fewer schools have outlier levels of Danish-origin students in Mellemtrin.</p>
 <p>Udskoling (7th-9th Grade):</p>
 <p>The trend shows a gradual increase in the average percentage of Danish-origin students, moving from around 30% up to 40%.
-Variation among schools has decreased over time, but some schools still show up to 70% Danish-origin students, indicating that these grades are seeing more Danish students in certain cases.
+Variation among schools has decreased over time, but some schools still show up to 70% Danish-origin students.
 The decreasing variation, along with the increasing average, aligns with a growing interest among Danish students in the oldest grade levels.</p>
 </div>
 </div>
@@ -7762,7 +7749,7 @@ The decreasing variation, along with the increasing average, aligns with a growi
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Filter the data for the specified school and exclude "0th Grade"</span>
-<span class="n">school_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">"School"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"280397 Aarhus Academy for Global Education"</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"Grade"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"0th Grade"</span><span class="p">)]</span>
+<span class="n">school_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">"School"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"280397 Aarhus Academy for Global Education"</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"Grade"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"0th Grade"</span><span class="p">)]</span> <span class="c1">#Fun fact, even though AIS changed its name years ago, the old name is the one to search for</span>
 
 <span class="c1"># Melt the DataFrame for plotting</span>
 <span class="n">melted_school_data</span> <span class="o">=</span> <span class="n">school_data</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">"School"</span><span class="p">,</span> <span class="s2">"Grade"</span><span class="p">],</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2024</span><span class="p">)],</span>
@@ -7833,11 +7820,11 @@ if (outputEl) {{
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Let's look at the historical data from one of my old schools because I know a few of the circumstances that might explain the variation in numbers</p>
-<p>You can see that in the youngest grades, 30-40% of students were Danish origin. The numbers dip at 2018-2023 because a bilingual programme opened at another of my old schools which was designed to be attractive to mixed Danish/other nationality families.
-The middle grades have not followed the pattern of the younger grades, they got more popular after the competition opened up but then declined presumably as the "missing" children from the younger groups were not being promoted up to those classes.
-Udskoling is interesting: Danish origin students were a small minority at 20ish % but were more than half in 2020-21 (because people went home during a pandemic?) but have levelled out to a significant minority of mid 40%.</p>
-<p>It will be very interesting to see 2024s data which must be coming out soon because the competition closed, so how many Danish origin children went to AIS in the wake of that decision?</p>
+<p>Let's look at the historical data from one of my old schools because I know a few of the circumstances that might explain the variation in numbers.</p>
+<p>You can see that in the youngest grades, 30-40% of students were Danish origin. The numbers dip at 2018-2023 because a bilingual programme opened at another of my old schools which was designed to be attractive to mixed Danish/other nationality families.</p>
+<p>The middle grades have not followed the pattern of the younger grades, they actually got more popular after the competition opened up (did more foreigners go there in that age range?) but then declined presumably as the "missing" children from the younger groups were not being promoted up to those classes or because of international children transferring after a few years?</p>
+<p>Udskoling is interesting: Danish origin students were a small minority at 20ish % but were more than half in 2020-21 (because people went home during a pandemic?) but have levelled out to a significant minority of mid 40%.</p>
+<p>It will be very interesting to see 2024s data which must be coming out soon... because now the competition has closed,  how many Danish origin children moved to AIS in the wake of that decision?</p>
 </div>
 </div>
 </div>
@@ -7858,12 +7845,6 @@ Udskoling is interesting: Danish origin students were a small minority at 20ish 
                                       <span class="n">var_name</span><span class="o">=</span><span class="s2">"Year"</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s2">"Percentage"</span><span class="p">)</span>
 <span class="n">melted_school_data</span><span class="p">[</span><span class="s2">"Year"</span><span class="p">]</span> <span class="o">=</span> <span class="n">melted_school_data</span><span class="p">[</span><span class="s2">"Year"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># Convert years to integer for proper ordering</span>
 
-<span class="c1"># Define a custom color palette for the grades</span>
-<span class="n">custom_colors</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"Indskoling"</span><span class="p">:</span> <span class="s2">"#C39BD3"</span><span class="p">,</span>   <span class="c1"># Light purple</span>
-    <span class="s2">"Mellemtrin"</span><span class="p">:</span> <span class="s2">"#9B59B6"</span><span class="p">,</span>   <span class="c1"># Slightly darker purple</span>
-    <span class="s2">"Udskoling"</span><span class="p">:</span> <span class="s2">"#5e3370"</span>     <span class="c1"># Deep purple</span>
-<span class="p">}</span>
 
 <span class="c1"># Create the grouped bar chart with custom colors</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">melted_school_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"Year"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"Percentage"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"Grade"</span><span class="p">,</span> <span class="n">barmode</span><span class="o">=</span><span class="s2">"group"</span><span class="p">,</span>
@@ -7944,12 +7925,6 @@ More than half of their students in the oldest grades are Danish origin and that
                                       <span class="n">var_name</span><span class="o">=</span><span class="s2">"Year"</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s2">"Percentage"</span><span class="p">)</span>
 <span class="n">melted_school_data</span><span class="p">[</span><span class="s2">"Year"</span><span class="p">]</span> <span class="o">=</span> <span class="n">melted_school_data</span><span class="p">[</span><span class="s2">"Year"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># Convert years to integer for proper ordering</span>
 
-<span class="c1"># Define a custom color palette for the grades</span>
-<span class="n">custom_colors</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"Indskoling"</span><span class="p">:</span> <span class="s2">"#C39BD3"</span><span class="p">,</span>   <span class="c1"># Light purple</span>
-    <span class="s2">"Mellemtrin"</span><span class="p">:</span> <span class="s2">"#9B59B6"</span><span class="p">,</span>   <span class="c1"># Slightly darker purple</span>
-    <span class="s2">"Udskoling"</span><span class="p">:</span> <span class="s2">"#5e3370"</span>     <span class="c1"># Deep purple</span>
-<span class="p">}</span>
 
 <span class="c1"># Create the grouped bar chart with custom colors</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">melted_school_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"Year"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"Percentage"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"Grade"</span><span class="p">,</span> <span class="n">barmode</span><span class="o">=</span><span class="s2">"group"</span><span class="p">,</span>
@@ -8008,7 +7983,8 @@ if (outputEl) {{
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Again, I don't know that much about Esbjerg International School but the oldest grade's trend is similar to ISIB's and the trend for the middle grades is almost a copy past of their oldest's grades. There were more Danish origin students in the youngest classes but this has been gradually declining.</p>
+<p>Again, I don't know that much about Esbjerg International School but the oldest grade's trend is similar to ISIB's and also the trend for the middle grades is almost a copy past of their oldest's grades. There were more Danish origin students in the youngest classes but this has been gradually declining.</p>
+<p>I thought about doing some of the other schools in the data set but I thought three grouped bar charts is about all people can tolerate. I'll "do" a school of your choice if you ask :)</p>
 </div>
 </div>
 </div>
@@ -8026,18 +8002,15 @@ if (outputEl) {{
 <li>How does this affect the school?</li>
 </ol>
 <h1 id="The-Students">The Students<a class="anchor-link" href="#The-Students">¶</a></h1><p>There are many benefits to a bilingual education, including for children who are just looking for an extra challenge or who simply like the English language. However, international schools are a small parallel community for foreigners who do not intend to stay in Denmark. Danish schools prepare their students for living in Denmark and give them a grounding in cultural values and norms. Danish children who attend international schools are being educated as Third Culture Kids.
-This could be the best thing that ever happened to Denmark: shaking things up and getting the next generation to be internationally-minded. Or it could cause difficulties for Danish children who don't fit in at home.</p>
+This could be the best thing that ever happened to Denmark: shaking things up and getting the next generation to be internationally-minded. Or it could cause difficulties for Danish children who do not feel at home in their country, as they have been schooled to be Third Culture Kids.</p>
 <p>Many of the Danish children attracted to International Schools are academic high fliers BUT they have had one fewer year of school, their content base is not as broad to draw from and they are working in their second language for the first time so need to pick up academic and subject specific vocabulary.</p>
-<p>Some of the Danish children are attracted to International schools because they are not thriving in their ordinary school. This might be, as said above, due to not being challenged (This might be why the turning point for attracting Danish origin children is in the oldest years), but it also could be due to being neurodiverse and finding big schools, with large classes upleasant.
+<p>Some of the Danish children are attracted to International schools because they are not thriving in their ordinary school. This might be, as said above, due to not being challenged (This might be why the turning point for attracting Danish origin children is often in the oldest years), but it also could be due to being neurodiverse and finding big schools, with large classes unpleasant.
 Many international schools are smaller and have fewer students in their classes, allowing for more individual attention. And... Neurodiverse Danish students often are experts in English as they follow their special interests on YouTube and most of the content they have watched is in English.</p>
 <h1 id="The-International-Schools">The International Schools<a class="anchor-link" href="#The-International-Schools">¶</a></h1><p>Many international schools market themselves as being especially academically rigorous to attract families with a strong tradition for school achievement. The grades they receive in exams are important to the school's board and are advertised on the website. Many international school boards desire above average global rankings.</p>
-<p>Having a large proportion of Danish students presents a special challenge. Particularly, if the reason they are there is because of unsupported special educational needs (diagnosed or otherwise). This transforms the dynamic in International Schools into something a bit different than the original plan. Of course, many students with international backgrounds have special needs but the balance is shifted by having so many Danish students who are there because they couldn't thrive in their local school. It is also particularly difficult to get students through exams in the final three years of a 11 year programme, which is when International Schools become more popular for Danish origin students.</p>
+<p>Having a large proportion of Danish students presents a special challenge. Particularly, if the reason they are there is because of unsupported special educational needs (diagnosed or otherwise). This transforms the dynamic in International Schools into something a bit different than the original plan. Of course, many students with international backgrounds have special needs but the balance is shifted by having so many Danish students who are there because they couldn't thrive in their local school. It is also particularly difficult to get students through exams in the final three years of an 11 year programme, which is when International Schools become much more popular for Danish origin students.</p>
 <p>This put International Schools in a difficult position: Are they globally elite academic institutions or are they a final resort for Danish children with nowhere else to go?</p>
 <h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">¶</a></h1><p>The trend I have identified has existed for some time. Danish children are increasingly attending international schools— whether it's for academic challenge, a chance to study in a foreign language, or the need for a smaller, more supportive educational environment.</p>
-<p>This shift presents both opportunities and challenges. On one hand, it could encourage a new generation of Danish students to become globally minded, culturally flexible, and linguistically adept—skills that are highly valuable in an interconnected world. These students, raised in bilingual or multilingual settings, might bring fresh perspectives and adaptability that benefit Danish society as a whole.</p>
-<p>On the other hand, it creates a delicate balance for the schools themselves. As they accommodate more Danish students, some with challenging educational needs, they risk shifting from their original mission of serving globally mobile families. If too many students join international schools as a “last resort,” this could alter the academic rigor and international focus that these institutions are known for. The increasing presence of Danish students could necessitate additional resources and adjustments, particularly if some are there due to unmet needs in the Danish school system.</p>
-<p>Ultimately, this trend reflects a complex intersection between Danish society and the evolving role of international schools. If thoughtfully addressed, this could lead to a richer, more inclusive educational landscape. However, without careful consideration, international schools may face tension between maintaining their elite, globally focused reputation and meeting the growing demands from Danish students who seek an alternative educational path.</p>
-<p>In summary, as the Danish student population in international schools grows, these institutions will need to navigate their dual identity: Are they academically rigorous spaces for global citizens, or are they becoming a vital alternative for Danish students in need of a different educational experience?</p>
+<p>As the Danish student population in international schools grows, these institutions will need to navigate their dual identity: Are they academically rigorous spaces for global citizens, or are they becoming a vital alternative for Danish students in need of a different educational experience?</p>
 </div>
 </div>
 </div>
